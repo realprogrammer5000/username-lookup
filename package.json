@@ -1,0 +1,29 @@
+{
+  "name": "username-lookup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "dependencies": {
+    "csv-parse": "^4.9.0"
+  },
+  "devDependencies": {
+    "mocha": "^7.1.2"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/realprogrammer5000/username-lookup.git"
+  },
+  "author": "programmer5000",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/realprogrammer5000/username-lookup/issues"
+  },
+  "homepage": "https://github.com/realprogrammer5000/username-lookup#readme"
+}
