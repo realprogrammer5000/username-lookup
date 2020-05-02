@@ -52,7 +52,6 @@ describe("runsherlock", () => {
     });
 
     it("should have Facebook", () => {
-        // console.log(resp);
         assert(resp.some(res => res.name === "Facebook" && res.url_user === "https://www.facebook.com/realdonaldtrump"));
     });
 
@@ -62,5 +61,16 @@ describe("runsherlock", () => {
 
     it("should not throw on second page", async () => {
         await require("../lib/runsherlock")("realdonaldtrump", 20000, false, 1, 30);
+    });
+
+
+    it("should throw EOUTOFBOUNDS on out of bounds", async () => {
+        try{
+            await require("../lib/runsherlock")("realdonaldtrump", 20000, false, 10000, 30);
+            // noinspection ExceptionCaughtLocallyJS
+            throw new Error("Expected to throw but didn't!");
+        }catch(e){
+            if(e.code !== "EOUTOFBOUNDS") throw e;
+        }
     });
 });
