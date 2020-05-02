@@ -40,15 +40,20 @@ describe("getsherlockmodules", () => {
 describe("runsherlock", () => {
     let resp;
     it("should not throw", async () => {
-        resp = await require("../lib/runsherlock")("realdonaldtrump", 20000, false);
+        resp = await require("../lib/runsherlock")("realdonaldtrump", 20000, false, 0, 30);
     });
 
     it("should give modules on fake run", () => {
         assert(resp.length);
     });
 
-    it("should have Twitter", () => {
-        assert(resp.some(res => res.name === "Twitter" && res.url_user === "https://www.twitter.com/realdonaldtrump"));
+    it("should have the correct number of modules", () => {
+        assert.equal(resp.length, 30);
+    });
+
+    it("should have Facebook", () => {
+        // console.log(resp);
+        assert(resp.some(res => res.name === "Facebook" && res.url_user === "https://www.facebook.com/realdonaldtrump"));
     });
 
     it("should have ranks", () => {
