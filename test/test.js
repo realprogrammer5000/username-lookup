@@ -50,4 +50,8 @@ describe("runsherlock", () => {
     it("should have Twitter", () => {
         assert(resp.some(res => res.name === "Twitter" && res.url_user === "https://www.twitter.com/realdonaldtrump"));
     });
+
+    it("should have ranks", () => {
+        assert(resp.some(res => res.rank));
+    });
 });
