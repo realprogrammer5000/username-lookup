@@ -59,4 +59,8 @@ describe("runsherlock", () => {
     it("should have ranks", () => {
         assert(resp.some(res => res.rank));
     });
+
+    it("should not throw on second page", async () => {
+        await require("../lib/runsherlock")("realdonaldtrump", 20000, false, 1, 30);
+    });
 });
