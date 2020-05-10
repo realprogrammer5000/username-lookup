@@ -22,7 +22,7 @@ describe("checkmodulesinstalled", () => {
         });
     });
     it("should run sherlock", function(){
-        const {status, stdout} = spawnSync("python3", ["sherlock/sherlock.py", "--version"]);
+        const {status, stdout} = spawnSync("python3", ["sherlock/sherlock", "--version"]);
         assert.equal(status, 0);
         assert(stdout.length > 0);
     });
