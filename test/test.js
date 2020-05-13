@@ -40,7 +40,7 @@ describe("getsherlockmodules", () => {
 describe("runsherlock", () => {
     let resp;
     it("should not throw", async () => {
-        resp = await require("../lib/runsherlock")("realdonaldtrump", 20, false, 0, 30);
+        resp = await require("../lib/runsherlock")("realdonaldtrump", 20, false, 0, 30, 0);
     });
 
     it("should give modules on fake run", () => {
@@ -60,13 +60,13 @@ describe("runsherlock", () => {
     });
 
     it("should not throw on second page", async () => {
-        await require("../lib/runsherlock")("realdonaldtrump", 20, false, 1, 30);
+        await require("../lib/runsherlock")("realdonaldtrump", 20, false, 1, 30, 0);
     });
 
 
     it("should throw EOUTOFBOUNDS on out of bounds", async () => {
         try{
-            await require("../lib/runsherlock")("realdonaldtrump", 20, false, 10000, 30);
+            await require("../lib/runsherlock")("realdonaldtrump", 20, false, 10000, 30, 0);
             // noinspection ExceptionCaughtLocallyJS
             throw new Error("Expected to throw but didn't!");
         }catch(e){
