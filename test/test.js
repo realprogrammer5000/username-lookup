@@ -74,3 +74,24 @@ describe("runsherlock", () => {
         }
     });
 });
+
+describe("usernamefinders", () => {
+    it("should get correct Minecraft usernames", async () => {
+        const usernames = await require("../lib/usernamefinders/mojangapi")("thisisepic");
+        assert.deepEqual(usernames, [
+            {
+                username: 'epic9898',
+                icon: 'https://www.minecraft.net/etc.clientlibs/minecraft/clientlibs/main/resources/apple-icon-180x180.png',
+                from: 'Previous Minecraft Username',
+                lastUsed: new Date("2015-07-23T22:32:28.000Z")
+            },
+                {
+                    username: 'Epic_Plays9898',
+                        icon: 'https://www.minecraft.net/etc.clientlibs/minecraft/clientlibs/main/resources/apple-icon-180x180.png',
+                    from: 'Previous Minecraft Username',
+                    lastUsed: new Date("2016-02-21T19:13:29.000Z")
+                }
+            ]
+        );
+    });
+});
