@@ -75,8 +75,20 @@ describe("runsherlock", () => {
     });
 });
 
-describe("usernamefinders", () => {
-    it("should get correct Minecraft usernames", async () => {
+describe("usernamefinders", function (){
+    this.timeout(5000);
+
+    it("should get no Minecraft usernames for \"noonewouldeverusethis7\"", async () => {
+        const usernames = await require("../lib/usernamefinders/mojangapi")("noonewouldeverusethis7");
+        assert.deepEqual(usernames, []);
+    });
+
+    it("should get no Minecraft usernames for \"test\"", async () => {
+        const usernames = await require("../lib/usernamefinders/mojangapi")("test");
+        assert.deepEqual(usernames, []);
+    });
+
+    it("should get correct Minecraft usernames for \"thisisepic\"", async () => {
         const usernames = await require("../lib/usernamefinders/mojangapi")("thisisepic");
         assert.deepEqual(usernames, [
             {
@@ -93,5 +105,16 @@ describe("usernamefinders", () => {
                 }
             ]
         );
+    });
+
+    it("should get no Steam usernames for \"test\"", async () => {
+        const usernames = await require("../lib/usernamefinders/steamdbapi")("test");
+        assert.deepEqual(usernames, []);
+    });
+
+    it("should get correct Steam usernames for \"test15\"", async () => {
+        const date = new Date();
+        const usernames = await require("../lib/usernamefinders/steamdbapi")("test15", date);
+        assert.deepEqual(usernames, [{"username":"JWGOD","icon":"https://store.steampowered.com/favicon.ico","from":"Previous Steam Username","lastUsed":date},{"username":"................","icon":"https://store.steampowered.com/favicon.ico","from":"Previous Steam Username","lastUsed":new Date("2017-03-20T04:00:00.000Z")},{"username":"..............","icon":"https://store.steampowered.com/favicon.ico","from":"Previous Steam Username","lastUsed":new Date("2017-03-20T04:00:00.000Z")},{"username":"............","icon":"https://store.steampowered.com/favicon.ico","from":"Previous Steam Username","lastUsed":new Date("2017-03-20T04:00:00.000Z")},{"username":"..........","icon":"https://store.steampowered.com/favicon.ico","from":"Previous Steam Username","lastUsed":new Date("2017-03-20T04:00:00.000Z")},{"username":"........","icon":"https://store.steampowered.com/favicon.ico","from":"Previous Steam Username","lastUsed":new Date("2017-03-20T04:00:00.000Z")},{"username":"......","icon":"https://store.steampowered.com/favicon.ico","from":"Previous Steam Username","lastUsed":new Date("2017-03-20T04:00:00.000Z")},{"username":"....","icon":"https://store.steampowered.com/favicon.ico","from":"Previous Steam Username","lastUsed":new Date("2017-03-20T04:00:00.000Z")},{"username":"..","icon":"https://store.steampowered.com/favicon.ico","from":"Previous Steam Username","lastUsed":new Date("2017-03-20T04:00:00.000Z")},{"username":"Моча Воробья","icon":"https://store.steampowered.com/favicon.ico","from":"Previous Steam Username","lastUsed":new Date("2017-03-20T04:00:00.000Z")}]);
     });
 });
